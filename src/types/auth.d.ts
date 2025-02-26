@@ -3,7 +3,11 @@ export interface SocialAuthResponse {
   id: string;
   email: string;
   name: string;
-  picture?: string;
+  picture?: string | {
+    data: {
+      url: string;
+    }
+  };
   provider: 'google' | 'facebook';
 }
 

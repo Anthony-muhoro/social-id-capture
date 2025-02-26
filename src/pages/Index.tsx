@@ -42,6 +42,12 @@ const Index = () => {
     }
   };
 
+  const getProfilePictureUrl = (picture: SocialAuthResponse['picture']) => {
+    if (!picture) return '';
+    if (typeof picture === 'string') return picture;
+    return picture.data?.url || '';
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
       <div className="bg-white rounded-lg shadow-lg p-8 space-y-6 w-full max-w-md">
@@ -77,10 +83,7 @@ const Index = () => {
                   <div>
                     <strong>Profile Picture:</strong>
                     <img 
-                      src={typeof userData.picture === 'string' ? 
-                        userData.picture : 
-                        userData.picture.data?.url
-                      } 
+                      src={getProfilePictureUrl(userData.picture)}
                       alt="Profile" 
                       className="w-16 h-16 rounded-full mt-2"
                     />
